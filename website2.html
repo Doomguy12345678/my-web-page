@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects and Future Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            background-color: #333;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: inline-block;
+        }
+        nav ul li a:hover {
+            background-color: #4CAF50;
+        }
+        section {
+            padding: 20px;
+            margin: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+        .project-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .project-item {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(33.333% - 20px);
+            box-sizing: border-box;
+        }
+        .project-item img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Personal Webpage</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#youtube">YouTube</a></li>
+        <li><a href="#email">Email</a></li>
+    </ul>
+</nav>
+
+<section id="home">
+    <h2>Home</h2>
+    <p>Welcome to my personal webpage. Here you can find information about me, my projects, and much more!</p>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>Hi, I'm Michael, a passionate developer and content creator. I love working on innovative projects and sharing my knowledge with others.</p>
+</section>
+
+<section id="portfolio">
+    <h2>Portfolio</h2>
+    <div class="project-grid">
+        <div class="project-item">
+            <h3>Project 1</h3>
+            <img src="project1.jpg" alt="distance teller">
+            <p>My first camera project that utilizes the cv2 module in Python.</p>
+        </div>
+        <div class="project-item">
+            <h3>Project 2</h3>
+            <img src="project2.jpg" alt="Eternal-Odyssey">
+            <p>My first game made with Pygame in Python.</p>
+        </div>
+        <div class="project-item">
+            <h3>Project 3</h3>
+            <img src="snakegame.jpg" alt="Snake">
+            <p>Snake game made with the Pygame module in Python.</p>
+        </div>
+    </div>
+</section>
+
+<section id="blog">
+    <h2>Blog</h2>
+    <p>Don't judge, this is my first webpage.</p>
+</section>
+
+<section id="youtube">
+    <h2>YouTube</h2>
+    <p>Follow me on <a href="https://www.youtube.com/channel/UCSFKaBGTh6EYUOW4PpLCRXw" target="_blank">YouTube</a></p>
+</section>
+
+<section id="email">
+    <h2>Email</h2>
+    <p>You can reach me at: <a href="mailto:suicidesquad12389@gmail.com">suicidesquad12389@gmail.com</a></p>
+</section>
+
+<footer>
+    <p>&copy; 2024 Michael. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
