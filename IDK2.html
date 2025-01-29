@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Clicker+ 🚀</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        h1 { color: #333; }
+        button { padding: 15px 30px; font-size: 18px; margin: 10px; cursor: pointer; border: none; border-radius: 10px; }
+        #click-btn { background-color: #4CAF50; }
+        #prestige-btn { background-color: #ff5722; }
+        #pet-shop { background-color: #8e44ad; }
+        .shop-item, .mini-game, .skill-upgrade { background-color: #3498db; }
+        #rank, #achievements, #quests { font-size: 18px; }
+        #mini-game-container, #skill-tree-container, #quests-container { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Ultimate Clicker+ 🚀</h1>
+    <p>Score: <span id="score">0</span></p>
+    <p>High Score: <span id="high-score">0</span></p>
+    <p>Prestige Level: <span id="prestige-level">0</span></p>
+    <p>Rank: <span id="rank">Beginner</span></p>
+
+    <button id="click-btn">Click Me!</button>
+    <button id="prestige-btn">Prestige (Reset for x2 Multiplier!)</button>
+
+    <h2>Skill Tree & Boosters</h2>
+    <div id="skill-tree-container">
+        <button class="skill-upgrade" id="boost-click">Upgrade Click Power (Cost: 200)</button>
+        <button class="skill-upgrade" id="boost-auto">Boost Auto-Clicks (Cost: 500)</button>
+    </div>
+
+    <h2>Daily Quests</h2>
+    <div id="quests-container">
+        <p id="quests">Complete 50 Clicks Today! (Reward: 500 points)</p>
+        <button id="claim-quest">Claim Reward</button>
+    </div>
+
+    <h2>Mini Games</h2>
+    <div id="mini-game-container">
+        <button class="mini-game" id="spin-wheel">🎰 Spin the Wheel</button>
+    </div>
+
+    <h2>Online Leaderboard</h2>
+    <p>Top Score: <span id="leaderboard-score">0</span></p>
+
+    <script>
+        let score = 0;
+        let pointsPerClick = 1;
+        let prestigeMultiplier = 1;
+        let prestigeLevel = 0;
+        let highScore = localStorage.getItem("highScore") || 0;
+        let leaderboardScore = localStorage.getItem("leaderboard") || 0;
+        let questProgress = 0;
+        let questTarget = 50;
+        let questCompleted = false;
+
+        document.getElementById("high-score").innerText = highScore;
+        document.getElementById("leaderboard-score").innerText = leaderboardScore;
+
+        document.getElementById("click-btn").addEventListener("click", function() {
+            score += pointsPerClick * prestigeMultiplier;
+            document.getElementById("score").innerText = score;
+            questProgress++;
+            checkQuestCompletion();
+            updateHighScore();
+        });
+
+        function checkQuestCompletion() {
+            if (questProgress >= questTarget && !questCompleted) {
+                document.getElementById("quests").innerText = "Quest Completed! Claim Your Reward!";
+                questCompleted = true;
+            }
+        }
+
+        document.getElementById("claim-quest").addEventListener("click", function() {
+            if (questCompleted) {
+                score += 500;
+                document.getElementById("score").innerText = score;
+                alert("You claimed your daily quest reward!");
+                questCompleted = false;
+                questProgress = 0;
+                document.getElementById("quests").innerText = "Complete 50 Clicks Today! (Reward: 500 points)";
+            }
+        });
+
+        function updateHighScore() {
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem("highScore", highScore);
+                document.getElementById("high-score").innerText = highScore;
+            }
+            if (score > leaderboardScore) {
+                leaderboardScore = score;
+                localStorage.setItem("leaderboard", leaderboardScore);
+                document.getElementById("leaderboard-score").innerText = leaderboardScore;
+            }
+        }
+
+        document.getElementById("prestige-btn").addEventListener("click", function() {
+            if (score >= 10000) {
+                score = 0;
+                prestigeMultiplier *= 2;
+                prestigeLevel += 1;
+                document.getElementById("score").innerText = score;
+                document.getElementById("prestige-level").innerText = prestigeLevel;
+                alert("You've Prestiged! Now earning x" + prestigeMultiplier + " points per click!");
+            } else {
+                alert("Reach 10,000 points to Prestige!");
+            }
+        });
+
+        document.getElementById("boost-click").addEventListener("click", function() {
+            if (score >= 200) {
+                score -= 200;
+                pointsPerClick += 1;
+                document.getElementById("score").innerText = score;
+                alert("Click Power Upgraded! Now earning " + pointsPerClick + " points per click!");
+            } else {
+                alert("Not enough points!");
+            }
+        });
+
+        document.getElementById("boost-auto").addEventListener("click", function() {
+            if (score >= 500) {
+                score -= 500;
+                setInterval(() => {
+                    score += 5;
+                    document.getElementById("score").innerText = score;
+                }, 1000);
+                document.getElementById("score").innerText = score;
+                alert("Auto-Click Boosted! Now gaining points every second!");
+            } else {
+                alert("Not enough points!");
+            }
+        });
+    </script>
+
+</body>
+</html>
